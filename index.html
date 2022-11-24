@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/assets/images/favicon-32x32.png" type="image/x-icon">
+    <title>Rock, Paper, Scissors, Lizard, Spock</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="index.js" defer></script>
+</head>
+
+<body>
+    <audio id="rules-audio">
+        <source src="./assets/audio/tbbt.mp3">
+    </audio>
+
+    <header>
+        <img src="./assets/images/logo-bonus.svg" alt="image of the logo..." class="logo">
+
+        <div class="scoreContainer">
+            <p class="scoreHeader">SCORE</p>
+            <p class="score" id="score"></p>
+        </div>
+    </header>
+
+    <main>
+        <section class="firstStepContainer" id="firstStepContainer">
+            <div class="choiceContainer rock" id="rock">
+                <img src="/assets/images/icon-rock.svg" alt="rock..." class="choiceImg rock">
+            </div>
+
+            <div class="choiceContainer paper" id="paper">
+                <img src="/assets/images/icon-paper.svg" alt="paper..." class="choiceImg paper">
+            </div>
+
+            <div class="choiceContainer scissor" id="scissor">
+                <img src="/assets/images/icon-scissors.svg" alt="scissors..." class="choiceImg scissors">
+            </div>
+
+            <div class="choiceContainer lizard" id="lizard">
+                <img src="/assets/images/icon-lizard.svg" alt="lizard..." class="choiceImg lizard">
+            </div>
+
+            <div class="choiceContainer spock" id="spock">
+                <img src="/assets/images/icon-spock.svg" alt="spock..." class="choiceImg spock">
+            </div>
+        </section>
+        
+        <!-- secondStepContainer -->
+        <section class="displayNone" id="secondStepContainer">
+            <!-- pickedContainer -->
+            <div class="pickedContainer">
+               
+                <!-- playerPickedContainer -->
+                <div class="playerPickedContainer">
+                    <!-- displayPicked pickedRock -->
+                    <div class="displayNone" id="playerPickedRock">
+                        <img src="/assets/images/icon-rock.svg" alt="" class="pickedIcon">
+                    </div>
+
+                    <!-- displayPicked pickedPaper -->
+                    <div class="displayNone" id="playerPickedPaper">
+                        <img src="/assets/images/icon-paper.svg" alt="" class="pickedIcon">
+                    </div>
+
+                    <!-- displayPicked pickedScissor -->
+                    <div class="displayNone" id="playerPickedScissor">
+                        <img src="/assets/images/icon-scissors.svg" alt="" class="pickedIcon">
+                    </div>
+
+                    <!-- displayPicked pickedLizard -->
+                    <div class="displayNone" id="playerPickedLizard">
+                        <img src="/assets/images/icon-lizard.svg" alt="" class="pickedIcon">
+                    </div>
+
+                    <!-- displayPicked pickedSpock -->
+                    <div class="displayNone" id="playerPickedSpock">
+                        <img src="/assets/images/icon-spock.svg" alt="" class="pickedIcon">
+                    </div>
+
+                    <p class="playerPickedTxt">YOU PICKED</p>
+
+                    <div class="displayNone" id="player-won-indicator">
+                        <div class="circle1"></div>
+                        <div class="circle2"></div>
+                        <div class="circle3"></div>
+                    </div>
+                </div>
+    
+                <div class="housePickedContainer">
+                    <!-- housePrePick -->
+                    <div class="housePrePick" id="housePrePick"></div>
+
+                    <!-- displayPicked pickedRock -->
+                    <div class="displayNone" id="housePickedRock">
+                        <img src="/assets/images/icon-rock.svg" alt="" class="pickedIcon">
+                    </div>
+                    
+                    <!-- displayPicked pickedPaper -->
+                    <div class="displayNone" id="housePickedPaper">
+                        <img src="/assets/images/icon-paper.svg" alt="" class="pickedIcon">
+                    </div>
+                    
+                    <!-- displayPicked pickedScissor -->
+                    <div class="displayNone" id="housePickedScissor">
+                        <img src="/assets/images/icon-scissors.svg" alt="" class="pickedIcon">
+                    </div>
+                    
+                    <!-- displayPicked pickedLizard -->
+                    <div class="displayNone" id="housePickedLizard">
+                        <img src="/assets/images/icon-lizard.svg" alt="" class="pickedIcon">
+                    </div>
+                    
+                    <!-- displayPicked pickedSpock -->
+                    <div class="displayNone" id="housePickedSpock">
+                        <img src="/assets/images/icon-spock.svg" alt="" class="pickedIcon">
+                    </div>
+
+                    <p class="housePickedTxt">THE HOUSE PICKED</p>
+
+                    <div class="displayNone" id="house-won-indicator">
+                        <div class="circle4"></div>
+                        <div class="circle5"></div>
+                        <div class="circle6"></div>
+                    </div>
+                </div>
+               
+            </div>
+
+            <!-- resultsContainer -->
+            <div class="resultsContainer">
+                <p class="result" id="result">YOU WIN</p>
+
+                <button class="playAgainBtn" id="playAgainBtn" onclick="handlePlayAgain()">PLAY AGAIN</button>
+            </div>
+        </section>
+
+    </main>
+    
+    <button class="rules-btn" id="rules-btn">RULES</button>
+
+    <button class="rules-btn-desktop" id="rules-btn2">RULES</button>
+    <!-- overlay -->
+    <div class="displayNone" id="overlay"></div>
+    
+    <!-- rules-modal -->
+    <section class="displayNone" id="rules-modal">
+        <img src="./assets/icons/close-icon.svg" alt="close modal icon" class="rules-modal-close-icon" id="rules-modal-close-icon">
+
+        <p class="rules-header">RULES</p>
+        <img src="/assets/images/image-rules-bonus.svg" alt="" class="rules-img">
+
+        <div class="rules-clue-container">
+            <img src="./assets/images/sheldon.jpg" alt="" class="sheldon-clue">
+            
+            <div class="rules-clue-right">
+                <p class="rules-clue-txt">Want me to explain?</p>
+
+                <div class="rules-play-audio-container" id="button-play-audio">
+                    <img src="/assets/icons/play_black.svg" alt="" class="rules-play-audio-img">
+                    <p class="rules-play-text">Play</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- lottie-audio-wave -->
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_ez9gk2qi.json" background="transparent" speed="1"
+            class="displayNone" id="lottie-audio-wave" loop autoplay></lottie-player>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,1447 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap');
+
+:root {
+    --background: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+    --rock-border: linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%));
+    --paper-border: linear-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%));
+    --scissors-border: linear-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%));
+    --lizard-border: linear-gradient(hsl(261, 73%, 60%), hsl(261, 72%, 63%));
+    --spock-border: linear-gradient(hsl(189, 59%, 53%), hsl(189, 58%, 57%));
+
+    /* Score colors */
+    --darkTxt: hsl(229, 25%, 31%);
+    --scoreTxt: hsl(229, 64%, 46%);
+    --headerOutline: hsl(217, 16%, 45%);
+
+    --pickedCircle: #111b44;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background-image: radial-gradient(at top,hsl(214, 47%, 23%) 10%, hsl(237, 49%, 15%));
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    overflow: hidden;
+    position: relative;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px 30px 0 30px;
+    border-radius: 5px;
+    outline: 2px solid var(--headerOutline);
+    padding: 10px 20px;
+}
+
+.logo {
+    height: 60px;
+    width: 60px;
+}
+
+.scoreContainer {
+    height: 80px;
+    width: 90px;
+    background-color: white;
+    border-radius: 5px;
+    display: grid;
+    place-items: center;
+}
+
+.scoreHeader {
+    color: var(--scoreTxt);
+    font-weight: 600;
+    font-size: .75rem;
+    margin-top: 5px;
+}
+
+.score {
+    color: var(--darkTxt);
+    font-weight: 700;
+    font-size: 3rem;
+    margin-top: -15px;
+}
+
+main {
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+/* First step ruleset */
+.firstStepContainer {
+    margin-top: 100px;
+    background-image: url('./assets/images/bg-pentagon.svg');
+    height: 310px;
+    width: 330px;
+    position: relative;
+    background-repeat: no-repeat;
+}
+
+.choiceContainer {
+    position: absolute;
+    z-index: 5;
+    background-color: white;
+    height: 100px;
+    width: 100px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    border: 10px solid transparent;
+    border-radius: 100%;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.choiceImg {
+    height: 38px;
+    width: 38px;
+    z-index: 6;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.choiceContainer.rock{
+    bottom: -35px;
+    right: 30px;
+    background-image: linear-gradient(white, white),
+    var(--rock-border);
+}
+
+.choiceContainer.paper {
+    top: 63px;
+    right: -15px;
+    background-image: linear-gradient(white, white),
+    var(--paper-border);
+}
+
+.choiceContainer.scissor {
+    top: -30px;
+    left: 115px;
+    background-image: linear-gradient(white, white),
+    var(--scissors-border);
+}
+
+.choiceContainer.lizard {
+    top: 63px;
+    left: -15px;
+    background-image: linear-gradient(white, white),
+    var(--lizard-border);
+}
+
+.choiceContainer.spock {
+    bottom: -35px;
+    left: 30px;
+    background-image: linear-gradient(white, white),
+    var(--spock-border);
+}
+
+/* Second step ruleset */
+.secondStepContainer {
+    display: grid;
+    place-items: center;
+    margin-top: 95px;
+    position: relative;
+}
+
+.pickedContainer {
+    display: flex;
+    gap: 40px;
+}
+
+.playerPickedContainer, .housePickedContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.resultBackground {
+    display: none;
+}
+
+.displayPicked {
+    height: 125px;
+    width: 125px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    border: 15px solid transparent;
+    border-radius: 100%;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.housePrePick {
+    height: 130px;
+    width: 130px;
+    background-color: var(--pickedCircle);
+    border-radius: 100%;
+    z-index: 10;
+}
+
+.playerPickedTxt, .housePickedTxt {
+    color: white;
+    font-size: 1.15rem;
+    font-weight: 400;
+    margin-top: 20px;
+    z-index: 10;
+}
+
+.pickedRock {
+    background-image: linear-gradient(white, white),
+    var(--rock-border);
+    z-index: 10;
+}
+
+.pickedPaper {
+    background-image: linear-gradient(white, white),
+    var(--paper-border);
+    z-index: 10;
+}
+
+.pickedScissor {
+    background-image: linear-gradient(white, white),
+    var(--scissors-border);
+    z-index: 10;
+}
+
+.pickedLizard {
+    background-image: linear-gradient(white, white),
+    var(--lizard-border);
+    z-index: 10;
+}
+
+.pickedSpock {
+    background-image: linear-gradient(white, white),
+    var(--spock-border);
+    z-index: 10;
+}
+
+.pickedIcon {
+    height: 45px;
+    width: 45px; 
+    z-index: 10;
+}
+
+.won-result-indicator, .lost-result-indicator {
+    overflow: hidden;
+    display: block;
+}
+
+.circle1 {
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+    background-color: white;
+    opacity: .03;
+    z-index: 3;
+    position: absolute;
+    top: -16px;
+    left: -18px;
+}
+
+.circle2 {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    background-color: white;
+    z-index: 2;
+    position: absolute;
+    top: -35px;
+    left: -38px;
+    opacity: .03;
+}
+
+.circle3 {
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    z-index: 1;
+    top: -60px;
+    left: -63px;
+    opacity: .03;
+}
+
+
+.circle4 {
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+    background-color: white;
+    opacity: .055;
+    z-index: 3;
+    position: absolute;
+    top: -16px;
+    right: -8px;
+}
+
+.circle5 {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    background-color: white;
+    z-index: 2;
+    position: absolute;
+    top: -35px;
+    right: -28px;
+    opacity: .05;
+}
+
+.circle6 {
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    z-index: 1;
+    top: -60px;
+    right: -53px;
+    opacity: .02;
+}
+
+/* Results ruleset */
+.resultsContainer {
+    display: grid;
+    place-items: center;
+    margin-top: 90px;
+}
+
+.result {
+    color: white;
+    font-size: 3.5rem;
+    font-weight: 700;
+}
+
+.playAgainBtn {
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    color: var(--darkTxt);
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-top: 20px;
+    padding: 15px 60px;
+    z-index: 15;
+}
+
+/* Rules modal ruleset */
+.rules-btn-desktop {
+    display: none;
+}
+
+.rules-btn {
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    display: block;
+    font-weight: 400;
+    font-size: 1.2rem;
+    padding: 10px 40px;
+    position: absolute;
+    top: 83%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, .45);
+    z-index: 10;
+}
+
+.rules-modal {
+    z-index: 15;
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+    border-radius: 5px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.rules-modal-close-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.rules-header {
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: var(--darkTxt);
+    text-align: center;
+    margin-top: 90px;
+}
+
+.rules-img {
+    height: 300px;
+    width: 300px;
+    margin: 50px auto 0 auto;
+    display: block;
+}
+
+.rules-clue-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 110px;
+    gap: 15px;
+}
+
+.sheldon-clue {
+    height: 70px;
+    width: 70px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.rules-clue-txt {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.rules-play-audio-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: fit-content;
+    margin-top: 5px;
+}
+
+.rules-play-audio-img {
+    height: 30px;
+    width: 30px;
+}
+
+.rules-play-text {
+    font-size: 1.1rem;
+    font-weight: 300;
+    margin-left: 5px;
+}
+
+.lottie-audio-wave {
+    height: 90px;
+    width: 200px;
+    margin: 5px auto 0 auto;
+}
+
+.displayNone {
+    display: none;
+}
+
+@media screen and (min-width: 425px) {
+    header {
+        margin: 40px 40px 0 40px;
+    }
+
+    /* First step */
+    .choiceContainer {
+        height: 110px;
+        width: 110px;
+        border-width: 12px;
+    }
+
+    /* Second step */
+    .displayPicked {
+        height: 135px;
+        width: 135px;
+    }
+
+    .circle1 {
+        height: 175px;
+        width: 175px;
+        top: -20px;
+        left: -21px;
+    }
+
+    .circle2 {
+        height: 220px;
+        width: 220px;
+        top: -42px;
+        left: -44px;
+    }
+
+    .circle3 {
+        height: 260px;
+        width: 260px;
+        top: -64px;
+        left: -64px;
+    }
+
+    .circle4 {
+        height: 175px;
+        width: 175px;
+        top: -20px;
+        right: -16px;
+    }
+
+    .circle5 {
+        height: 220px;
+        width: 220px;
+        top: -42px;
+        right: -39px;
+    }
+
+    .circle6 {
+        height: 260px;
+        width: 260px;
+        top: -64px;
+        right: -58px;
+    }
+
+    /* Rules modal */
+    .rules-modal-close-icon {
+        height: 33px;
+        width: 33px;
+    }
+   
+    .rules-header {
+        font-size: 2.5rem;
+        margin-top: 70px;
+    }
+
+    .rules-img {
+        height: 320px;
+        width: 320px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    header {
+        margin: 40px auto;
+        padding: 15px 20px;
+        width: 500px;
+    }
+
+    .logo {
+        height: 90px;
+        width: 90px;
+    }
+
+    .scoreContainer {
+        height: 90px;
+        width: 100px;
+    }
+
+    .scoreHeader {
+        font-size: .85rem;
+    }
+
+    .score {
+        font-size: 3.25rem;
+    }
+
+    .firstStepContainer {
+        height: 350px;
+        width: 350px;
+        margin-top:125px;
+    }
+
+    .choiceContainer {
+        height: 130px;
+        width: 130px;
+        border-width: 15px;
+    }
+
+    .choiceImg {
+        height: 45px;
+        width: 45px;
+    }
+
+    .choiceContainer.rock {
+        bottom: -20px;
+    }
+
+    .choiceContainer.paper {
+        top: 64px;
+    }
+
+    .choiceContainer.scissor {
+        top: -40px;
+        left: 103px;
+    }
+
+    .choiceContainer.lizard {
+        top: 64px;
+        left: -40px;
+    }
+
+    .choiceContainer.spock {
+        bottom: -20px;
+        left: 25px
+    }
+
+    /* Second step */
+    .secondStepContainer {
+        margin-top: 100px;
+    }
+
+    .pickedContainer {
+        gap: 100px;
+    }
+
+    .displayPicked {
+        height: 200px;
+        width: 200px;
+        border-width: 20px;
+    }
+
+    .pickedIcon {
+        height: 70px;
+        width: 70px;
+    }
+    
+    .playerPickedTxt, .housePickedTxt {
+        font-size: 1.8rem;
+    }
+
+    .circle1 {
+        height: 270px;
+        width: 270px;
+        top: -33px;
+        left: -35px;
+    }
+
+    .circle2 {
+        height: 340px;
+        width: 340px;
+        top: -68px;
+        left: -70px;
+    }
+
+    .circle3 {
+        height: 400px;
+        width: 400px;
+        top: -100px;
+        left: -100px;
+    }
+
+    .circle4 {
+        height: 270px;
+        width: 270px;
+        top: -33px;
+        right: -26px;
+    }
+
+    .circle5 {
+        height: 340px;
+        width: 340px;
+        top: -68px;
+        right: -62px;
+    }
+
+    .circle6 {
+        height: 400px;
+        width: 400px;
+        top: -100px;
+        right: -92px;
+    }
+
+    /* Rules modal */
+    .rules-btn {
+        font-size: 1.7rem;
+        padding: 12px 45px;
+    }
+
+    .rules-modal {
+        height: 800px;
+        width: 500px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .rules-img {
+        height: 280px;
+        width: 280px;
+    }
+
+    .sheldon-clue {
+        height: 70px;
+        width: 70px;
+    }
+
+    .rules-clue-txt {
+        font-size: 1.7rem;
+    }
+
+    .rules-play-text {
+        font-size: 1.3rem;
+    }
+
+    .lottie-audio-wave {
+        height: 110px;
+        width: 240px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    header {
+        width: 570px;
+    }
+
+    .logo {
+        height: 100px;
+        width: 100px;
+    }
+
+    .scoreContainer {
+        height: 100px;
+        width: 130px;
+    }
+
+    .scoreHeader {
+        font-size: 1.1rem;
+    }
+
+    .score {
+        font-size: 3.8rem;
+    }
+
+    .firstStepContainer {
+        margin-top: 70px;
+    }
+
+    /* second step */
+    .secondStepContainer {
+        margin-top: 40px;
+    }
+
+    .pickedContainer {
+        justify-content: space-between;
+        gap: 350px;
+    }
+    
+    .resultsContainer {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .playerPickedContainer, .housePickedContainer {
+        flex-direction: column-reverse;
+    }
+
+    .playerPickedTxt,
+    .housePickedTxt {
+        margin-top: 0;
+        margin-bottom: 50px;
+    }
+
+    .circle1 {
+        height: 270px;
+        width: 270px;
+        top: 50px;
+        left: -35px;
+    }
+
+    .circle2 {
+        height: 340px;
+        width: 340px;
+        top: 10px;
+        left: -70px;
+    }
+
+    .circle3 {
+        height: 400px;
+        width: 400px;
+        top: -22px;
+        left: -100px;
+    }
+
+    .circle4 {
+        height: 270px;
+        width: 270px;
+        top: 50px;
+        right: -26px;
+    }
+
+    .circle5 {
+        height: 340px;
+        width: 340px;
+        top: 10px;
+        right: -62px;
+    }
+
+    .circle6 {
+        height: 400px;
+        width: 400px;
+        top: -22px;
+        right: -92px;
+    }
+
+    /* rules modal */
+    .rules-btn {
+        position: absolute;
+        transform: translate(0%, 0%);
+        top: 650px;
+        left: 850px;
+        padding: 0;
+        height: 40px;
+        width: 125px;
+        font-size: 1.2rem;
+        border-radius: 3px;
+    }
+
+    .rules-modal {
+        height: 580px;
+        width: 500px;
+    }
+
+    .rules-modal-close-icon {
+        height: 28px;
+        width: 28px;
+        top: 18px;
+        right: 18px;
+    }
+
+    .rules-header {
+        font-size: 2.1rem;
+        margin-top: 40px;
+    }
+
+    .rules-img {
+        height: 250px;
+        width: 250px;
+        margin-top: 40px;
+    }
+
+    .rules-clue-container {
+        margin-top: 50px;
+    }
+
+    .sheldon-clue {
+        height: 50px;
+        width: 50px;
+    }
+
+    .rules-clue-txt {
+        font-size: 1.1rem;
+    }
+
+    .rules-play-audio-img {
+        height: 25px;
+        width: 25px;
+    }
+
+    .rules-play-text { 
+        font-size: .9rem;
+    }
+
+    .lottie-audio-wave {
+        height: 60px;
+        width: 180px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    header {
+        width: 650px;
+        margin-top: 45px;
+    }
+
+    .logo {
+        height: 120px;
+        width: 120px;
+    }
+
+    .scoreContainer {
+        height: 110px;
+        width: 140px;
+    }
+
+    .scoreHeader {
+        font-size: 1.2rem;
+    }
+
+    .score {
+        font-size: 4rem;
+    }
+
+    .firstStepContainer {
+        margin-top: 90px;
+    }
+
+    .choiceContainer {
+        height: 140px;
+        width: 140px;
+    }
+
+    .choiceImg {
+        height: 48px;
+        width: 48px;
+    }
+
+    .choiceContainer.rock {
+        bottom: -30px;
+        right: 5px;
+    }
+
+    .choiceContainer.paper {
+        top: 63px;
+        right: -40px;
+    }
+
+    .choiceContainer.scissor {
+        top: -50px;
+        left: 102px;
+    }
+
+    .choiceContainer.lizard {
+        top: 63px;
+        left: -50px;
+    }
+
+    .choiceContainer.spock {
+        bottom: -30px;
+        left: 5px
+    }
+
+    /* second step ruleset */
+    .secondStepContainer {
+        margin-top: 60px;
+    }
+
+    .pickedContainer {
+        gap: 350px;
+    }
+
+    .displayPicked {
+        height: 260px;
+        width: 260px;
+        border-width: 30px;
+    }
+
+    .pickedIcon {
+        height: 85px;
+        width: 85px;
+    }
+
+    .playerPickedTxt, .housePickedTxt {
+        font-size: 1.7rem;
+    }
+
+    .circle1 {
+        height: 370px;
+        width: 370px;
+        top: 28px;
+        left: -53px;
+    }
+
+    .circle2 {
+        height: 480px;
+        width: 480px;
+        top: -25px;
+        left: -105px;
+    }
+
+    .circle3 {
+        height: 590px;
+        width: 590px;
+        top: -80px;
+        left: -155px;
+    }
+
+    .circle4 {
+        height: 370px;
+        width: 370px;
+        top: 28px;
+        right: -55px;
+    }
+
+    .circle5 {
+        height: 480px;
+        width: 480px;
+        top: -25px;
+        right: -112px;
+    }
+
+    .circle6 {
+        height: 590px;
+        width: 590px;
+        top: -80px;
+        right: -166px;
+    }
+
+    /* rules ruleset */
+    .rules-btn {
+        display: none;
+    }
+
+    .rules-btn-desktop {
+        display: block;
+        position: absolute;
+        bottom: 100px;
+        right: 80px;
+        height: 40px;
+        width: 125px;
+        font-size: 1.2rem;
+        border-radius: 3px;
+        background-color: transparent;
+        border: 1px solid white;
+        color: white;
+        cursor: pointer;
+        z-index: 15;
+    }
+
+    .rules-modal {
+        height: 650px;
+        width: 500px;
+    }
+
+    .rules-header {
+        font-size: 2.2rem;
+    }
+
+    .rules-img {
+        height: 275px;
+        width: 275px;
+    }
+
+    .rules-clue-container {
+        margin-top: 70px;
+    }
+
+    .sheldon-clue {
+        height: 60px;
+        width: 60px;
+    }
+
+    .rules-clue-txt {
+        font-size: 1.3rem;
+    }
+
+    .rules-play-audio-img {
+        height: 30px;
+        width: 30px;
+    }
+
+    .rules-play-text {
+        font-size: 1.1rem;
+    }
+
+    .lottie-audio-wave {
+        height: 90px;
+        width: 250px;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    header {
+        width: 700px;
+        margin-top: 50px;
+    }
+
+    .logo {
+        height: 125px;
+        width: 125px;
+    }
+
+    .scoreContainer {
+        height: 120px;
+        width: 150px;
+    }
+
+    .scoreHeader {
+        font-size: 1.3rem;
+    }
+
+    .score {
+        font-size: 4.15rem;
+    }
+
+    .firstStepContainer {
+        /* margin-top: 90px; */
+    }
+
+    .choiceContainer {
+        height: 150px;
+        width: 150px;
+        border-width: 18px;
+    }
+
+    .choiceImg {
+        height: 50px;
+        width: 50px;
+    }
+
+    .choiceContainer.rock {
+        bottom: -30px;
+        right: 5px;
+    }
+
+    .choiceContainer.paper {
+        top: 63px;
+        right: -40px;
+    }
+
+    .choiceContainer.scissor {
+        top: -50px;
+        left: 95px;
+    }
+
+    .choiceContainer.lizard {
+        top: 63px;
+        left: -50px;
+    }
+
+    .choiceContainer.spock {
+        bottom: -30px;
+        left: 5px
+    }
+
+    /* .secondStepContainer {
+        margin-top: 60px;
+    } */
+
+    .pickedContainer {
+        gap: 380px;
+    }
+
+    .displayPicked {
+        height: 300px;
+        width: 300px;
+        border-width: 35px;
+    }
+
+    .pickedIcon {
+        height: 92px;
+        width: 92px;
+    }
+
+    .playerPickedTxt,
+    .housePickedTxt {
+        font-size: 1.9rem;
+    }
+
+    .circle1 {
+        height: 430px;
+        width: 430px;
+        top: 25px;
+        left: -65px;
+    }
+
+    .circle2 {
+        height: 560px;
+        width: 560px;
+        top: -34px;
+        left: -133px;
+    }
+
+    .circle3 {
+        height: 680px;
+        width: 680px;
+        top: -83px;
+        left: -190px;
+    }
+
+    .circle4 {
+        height: 430px;
+        width: 430px;
+        top: 25px;
+        right: -65px;
+    }
+
+    .circle5 {
+        height: 560px;
+        width: 560px;
+        top: -43px;
+        right: -133px;
+    }
+
+    .circle6 {
+        height: 680px;
+        width: 680px;
+        top: -100px;
+        right: -190px;
+    }
+
+    .resultsContainer {
+        top: 30%;
+    }
+
+    .result {
+        font-size: 4rem;
+    }
+
+    .playAgainBtn {
+        font-size: 1.3rem;
+        padding: 18px 60px;
+    }
+
+    /* Rules ruleset */
+    .rules-btn-desktop {
+        font-size: 1.4rem;
+        height: 55px;
+        width: 160px;
+        border-radius: 5px;
+        right: 40px;
+    }
+
+    .rules-modal {
+        height: 710px;
+        width: 520px;
+    }
+
+    .rules-header {
+        font-size: 2.4rem;
+        margin-top: 50px;
+    }
+
+    .rules-img {
+        height: 310px;
+        width: 310px;
+    }
+
+    .rules-clue-container {
+        margin-top: 60px;
+    }
+
+    .sheldon-clue {
+        height: 70px;
+        width: 70px;
+    }
+
+    .rules-clue-txt {
+        font-size: 1.4rem;
+    }
+
+    .rules-play-audio-img {
+        height: 33px;
+        width: 33px;
+    }
+
+    .rules-play-text {
+        font-size: 1.2rem;
+    }
+
+    .lottie-audio-wave {
+        height: 100px;
+        width: 280px;
+    }
+}
+
+
+@media screen and (min-width: 1920px) {
+    header {
+        width: 900px;
+        margin-top: 60px;
+    }
+
+    .logo {
+        height: 140px;
+        width: 140px;
+    }
+
+    .scoreContainer {
+        height: 140px;
+        width: 170px;
+    }
+
+    .scoreHeader {
+        font-size: 1.5rem;
+    }
+
+    .score {
+        font-size: 5rem;
+    }
+
+    .firstStepContainer {
+        margin-top: 130px;
+        background-size: cover;
+        height: 480px;
+        width: 520px;
+    }
+
+    .choiceContainer {
+        height: 230px;
+        width: 230px;
+        border-width: 26px;
+    }
+
+    .choiceImg {
+        height: 80px;
+        width: 80px;
+    }
+
+    .choiceContainer.rock {
+        bottom: -90px;
+        right: 5px;
+    }
+
+    .choiceContainer.paper {
+        top: 63px;
+        right: -85px;
+    }
+
+    .choiceContainer.scissor {
+        top: -80px;
+        left: 140px;
+    }
+
+    .choiceContainer.lizard {
+        top: 63px;
+        left: -85px;
+    }
+
+    .choiceContainer.spock {
+        bottom: -90px;
+        left: 5px
+    }
+
+    .secondStepContainer {
+        margin-top: 100px;
+    }
+
+    .pickedContainer {
+        gap: 480px;
+    }
+
+    .displayPicked {
+        height: 380px;
+        width: 380px;
+        border-width: 45px;
+    }
+
+    .pickedIcon {
+        height: 120px;
+        width: 120px;
+    }
+
+    .playerPickedTxt,
+    .housePickedTxt {
+        font-size: 2.4rem;
+    }
+
+    .circle1 {
+        height: 530px;
+        width: 530px;
+        top: 20px;
+        left: -75px;
+    }
+
+    .circle2 {
+        height: 700px;
+        width: 700px;
+        top: -60px;
+        left: -160px;
+    }
+
+    .circle3 {
+        height: 880px;
+        width: 880px;
+        top: -150px;
+        left: -255px;
+    }
+
+    .circle4 {
+        height: 530px;
+        width: 530px;
+        top: 20px;
+        right: -75px;
+    }
+
+    .circle5 {
+        height: 700px;
+        width: 700px;
+        top: -60px;
+        right: -160px;
+    }
+
+    .circle6 {
+        height: 880px;
+        width: 880px;
+        top: -150px;
+        right: -255px;
+    }
+
+    .result {
+        font-size: 5.4rem;
+    }
+
+    .playAgainBtn {
+        font-size: 2rem;
+        padding: 20px 55px;
+    }
+
+    .rules-btn-desktop {
+        font-size: 1.8rem;
+        height: 60px;
+        width: 180px;
+        border-radius: 10px;
+    }
+
+    .rules-modal {
+        height: 800px;
+        width: 590px;
+    }
+
+    .rules-modal-close-icon {
+        height: 40px;
+        width: 40px;
+        top: 25px;
+        right: 25px;
+    }
+
+    .rules-header {
+        font-size: 2.7rem;
+    }
+
+    .rules-img {
+        height: 370px;
+        width: 370px;
+    }
+
+    .rules-clue-container {
+        margin-top: 70px;
+    }
+
+    .sheldon-clue {
+        height: 80px;
+        width: 80px;
+    }
+
+    .rules-clue-txt {
+        font-size: 1.6rem;
+    }
+
+    .rules-play-audio-img {
+        height: 38px;
+        width: 38px;
+    }
+
+    .rules-play-text {
+        font-size: 1.4rem;
+    }
+
+    .lottie-audio-wave {
+        height: 130px;
+        width: 320px;
+    }
+}
