@@ -29,7 +29,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     font-family: 'Barlow Semi Condensed', sans-serif;
-    overflow: hidden;
+    overflow: scroll;
     position: relative;
 }
 
